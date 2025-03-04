@@ -11,15 +11,6 @@ Peli perustuu klassisen Yatzyn sääntöihin:
 - Pisteytys perustuu Yatzy-sääntöihin.
 - Pelin lopussa eniten pisteitä saanut voittaa! 🏆
 
-📂 Projektin rakenne:
-
-yatzy/
-│
-├── .gitignore    # Tiedostot, joita Git ei seuraa.
-├── main.py       # Pääohjelma, joka käynnistää pelin.
-├── logic.py      # Pelilogiikka (nopan heitto, pisteiden laskenta, vuorot).
-├── ui.py         # Käyttöliittymä ja vuorovaikutus pelaajan kanssa.
-└── README.md     # Tämä tiedosto – projektin kuvaus ja ohjeet.
 ## Käyttöohjeet:
 
 1️⃣ Varmista, että sinulla on Python asennettuna

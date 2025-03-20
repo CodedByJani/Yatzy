@@ -8,6 +8,7 @@ class YatzyPeli:
         self.nykyinen_pelaaja = 1  # Aloittaa pelaaja 1
         self.kierros = 1  # Ensimmäinen kierros
         self.broskut = 0
+
         self.kategoriat = {
             1: {  # Pelaaja 1 kategorian pisteet
                 "ykköset": None,
@@ -45,6 +46,15 @@ class YatzyPeli:
             },
         }
 
+    def kysy_pelaajien_nimet(self):
+        self.pelaajat = {
+            1: input("Anna ensimmäisen pelaajan nimi: ").strip() or "Pelaaja 1",
+            2: input("Anna toisen pelaajan nimi: ").strip() or "Pelaaja 2",
+        }
+
+    def tulosta_pelaajan_nimi(self):
+        return self.pelaajat[self.nykyinen_pelaaja]
+
     def heita_nopat(self, pidettavat=None):
         if self.broskut >= 3:  # Kolme heittoa on jo suoritettu
             print("Olet jo heittänyt 3 kertaa! Valitse kategoria.")
@@ -59,7 +69,7 @@ class YatzyPeli:
 
         self.nopat = uudet_nopat  # Päivitetään nopat
         self.broskut += 1  # Kasvatetaan heittojen laskuria
-        print(f"Pelaaja {self.nykyinen_pelaaja} heitti: {self.nopat} (heitto {self.broskut}/3)")
+        print(f"{self.tulosta_pelaajan_nimi()} heitti: {self.nopat} (heitto {self.broskut}/3)")
 
     def laske_pisteet_kategoria(self, silmaluku):
         # Laskee pisteet valitulle silmäluvulle (esim. "ykköset")
@@ -171,7 +181,7 @@ class YatzyPeli:
         # Vaihdetaan pelaajaa vuorotellen
         self.nykyinen_pelaaja = 1 if self.nykyinen_pelaaja == 2 else 2
         self.kierros += 1
-        print(f"Vuoro vaihtui. Nyt pelaa pelaaja {self.nykyinen_pelaaja}.")
+        print(f"Vuoro vaihtui. Nyt pelaa {self.tulosta_pelaajan_nimi()}.")
 
     def pelaa_kierros(self):
         # Yksi pelikierros, sisältäen nopan heiton ja kategorian valinnan
@@ -209,12 +219,13 @@ class YatzyPeli:
         # Pelin lopettaminen ja loppupisteiden näyttäminen
         print("\nPeli päättyi! Lopputulokset:")
         for pelaaja, pisteet in self.pisteet.items():
-            print(f"Pelaaja {pelaaja}: {pisteet} pistettä")
+            pelaajan_nimi = self.pelaajat.get(pelaaja, f"Pelaaja {pelaaja}")
+            print(f"{pelaajan_nimi}: {pisteet} pistettä")
         
         if self.pisteet[1] > self.pisteet[2]:
-            print("Pelaaja 1 voitti!")
+            print(f"{self.pelaajat[1]} voitti!")
         elif self.pisteet[2] > self.pisteet[1]:
-            print("Pelaaja 2 voitti!")
+            print(f"{self.pelaajat[2]} voitti!")
         else:
             print("Peli päättyi tasapeliin!")
         return True
@@ -225,6 +236,7 @@ class YatzyPeli:
 
 if __name__ == "__main__":
     peli = YatzyPeli()
+    peli.kysy_pelaajien_nimet()
     while not peli.onko_peli_paattynyt():
         if not peli.pelaa_kierros():
             break

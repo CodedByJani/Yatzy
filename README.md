@@ -45,4 +45,6 @@ Tulostukset ja käyttöliittymä: Näytä tulokset ja valikot konsolissa.
 Pelaajien valinnat: Kysy käyttäjältä, mitä hän haluaa tehdä (heitto, pisteytys).
 Pelin käynnistys: main.py yhdistää kaiken yhteen.
 
+
+https://fi.wikipedia.org/wiki/Yatzy
 https://cardgames.io/yahtzee/
